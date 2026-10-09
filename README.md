@@ -1,27 +1,211 @@
-# QUADRA
+# QUADRA 🎮
 
-QUADRA is a procedural, four-player co-op escape game built with Godot 4 and GDScript. It uses Godot's high-level multiplayer API over ENet; no third-party plugins or art assets are required.
+### Four Players. One Mission. No One Escapes Alone.
 
-## Run
+**QUADRA** is a 2D, top-down sci-fi cooperative escape game built with **Godot 4 and GDScript**. Four players are trapped inside a futuristic laboratory and must work together, solve puzzles, restore power, and escape before time runs out.
 
-Open this folder in Godot 4.x and run `scenes/main.tscn` (or press F6 with `main.tscn` selected). The project starts in the host/join menu.
+Each player has a unique role and ability. Success depends on teamwork, communication, and using everyone's strengths to overcome the laboratory's security systems and environmental hazards.
 
-## Play
+---
 
-- Host a game and share the displayed UDP port, or join with the host's direct IP address.
-- Exactly four operators are required before the host can start. Roles are assigned in peer order, one each: Blue Hacker, Green Engineer, Yellow Scout, Red Guardian.
-- Move with **WASD** or the **arrow keys**. Press **E** to collect a revealed fragment, revive a downed teammate, or use the evacuation console. Press **F** for your role ability.
-- Engineer: reach the reactor in the northwest and use F to repair it.
-- Hacker: use F at the security panel by the central door. After breaching, F at that panel temporarily suppresses the hazard field.
-- Scout: use F to pulse nearby hidden clues and traps, then press E at each revealed clue. The fragments reveal the three-digit code.
-- Guardian: press F to shield nearby teammates from hazard damage.
-- Recover all three fragments, restore reactor power, breach security, enter the recovered code at the evacuation console, and have every connected operator reach the exit before the 10-minute timer expires.
-- Hazards deal damage over time. Teammates can revive an incapacitated player with E; otherwise they recover after a short delay. A crew wipe or timeout loses the match.
+## 🚀 Game Overview
 
-The host can restart by returning to the lobby and starting another match. If a player disconnects during a match, their character becomes an inactive marker, the remaining crew can use that missing role's ability as needed, and only connected operators need to evacuate.
+* **Genre:** Cooperative multiplayer, puzzle, sci-fi escape
+* **Players:** 4
+* **Perspective:** 2D top-down
+* **Engine:** Godot 4.x
+* **Language:** GDScript
+* **Networking:** Godot High-Level Multiplayer API with ENet
+* **Match Duration:** 10 minutes
+* **Platform:** PC (initial development target)
 
-## Multiplayer limitations
+### The Mission
 
-This MVP uses direct ENet connections. It has no matchmaking, account system, relay, NAT traversal, or automatic LAN discovery. Players on the same LAN can usually connect using the host's private IPv4 address. For connections over the public internet, the host may need to allow or forward the selected **UDP** port (default `27145`) through their firewall/router, and the joining players need the host's reachable public IP. Network setup varies by router and ISP; carrier-grade NAT may prevent direct hosting. The host simulates movement, validates interactions and puzzle state, and owns the match timer. If the host disconnects, the match ends for everyone. Godot documents that ENet uses UDP in its [ENetMultiplayerPeer reference](https://docs.godotengine.org/en/4.4/classes/class_enetmultiplayerpeer.html).
+You and three teammates are trapped inside a high-security research laboratory. The facility is losing power, security systems are active, and the exit remains locked.
 
-There is no bundled Godot executable. Use a local Godot 4.x installation to run or export the project.
+Work together to restore electricity, bypass security, uncover hidden clues, and reach the exit before the countdown reaches zero.
+
+**One player cannot do everything. Every role matters.**
+
+---
+
+## 🧑‍🚀 Meet the Team
+
+Each character has a distinct role designed to encourage cooperation.
+
+| Character | Role     | Special Ability                                                                    |
+| --------- | -------- | ---------------------------------------------------------------------------------- |
+| 🔵 Blue   | Hacker   | Interacts with electronic panels, bypasses security, and unlocks security systems. |
+| 🟢 Green  | Engineer | Repairs the generator, restores power, and activates broken machinery.             |
+| 🟡 Yellow | Scout    | Reveals hidden clues, identifies nearby interactable objects, and detects traps.   |
+| 🔴 Red    | Guardian | Deploys a temporary protective shield to help teammates survive dangerous areas.   |
+
+Players must coordinate their abilities to progress through the laboratory and complete the mission.
+
+---
+
+## 🧩 Core Gameplay
+
+### ⚡ Restore the Power
+
+The laboratory's generator is offline. The Engineer must repair the machinery and help restore electricity to essential systems.
+
+### 🔐 Bypass Security
+
+Electronic doors and security systems block the team's progress. The Hacker must access control panels and disable or bypass security.
+
+### 🔎 Discover Hidden Clues
+
+Important information is concealed throughout the laboratory. The Scout helps reveal clues and uncover the code required to progress.
+
+### 🛡️ Protect Your Teammates
+
+Environmental hazards make exploration dangerous. The Guardian provides temporary protection, helping the team navigate hazardous sections.
+
+### 🚪 Escape Together
+
+Complete the required objectives, unlock the exit, and get the team to safety before the timer reaches zero.
+
+---
+
+## 🗺️ The Laboratory
+
+The game is set inside a futuristic research facility containing interconnected areas to explore.
+
+Planned and designed environments include:
+
+* Generator room
+* Security checkpoints and electronic doors
+* Control panels and machinery
+* Hidden clues and puzzle areas
+* Environmental hazards
+* Player spawn points
+* Locked exit room
+
+The laboratory is designed to support a short, replayable match in which players must balance exploration, puzzle-solving, and time management.
+
+---
+
+## ⏱️ Match Rules
+
+* Each match has a **10-minute countdown**.
+* Players cooperate to complete the required objectives.
+* Character abilities have cooldowns to encourage strategic use.
+* Players can be threatened by environmental hazards.
+* The team wins when the objectives are complete and the players reach the exit before time expires.
+* If the countdown reaches zero before the team escapes, the mission ends in defeat.
+* A results screen and restart flow are part of the intended match experience.
+
+---
+
+## 🌐 Multiplayer
+
+QUADRA is designed around real cooperative multiplayer rather than a simulated four-player experience.
+
+The planned multiplayer architecture uses:
+
+* Godot's high-level multiplayer API
+* ENet for network communication
+* Host-and-join sessions
+* Four player slots with distinct character roles
+* Synchronized player movement and gameplay state
+* Host-authoritative validation of important interactions
+* Multiplayer puzzle progression and match-state synchronization
+* Connection status and disconnect handling
+
+The initial networking target is LAN and direct-IP play. Internet matchmaking, relay services, and production-grade public matchmaking are outside the initial scope unless implemented separately.
+
+---
+
+## 🛠️ Technology Stack
+
+| Technology            | Purpose                                    |
+| --------------------- | ------------------------------------------ |
+| Godot 4.x             | Game engine                                |
+| GDScript              | Gameplay and game logic                    |
+| Godot Multiplayer API | Multiplayer architecture                   |
+| ENet                  | Network transport                          |
+| Godot 2D tools        | Scenes, collisions, visual effects, and UI |
+| Git and GitHub        | Version control and collaboration          |
+
+The project aims to use native Godot features and original, procedurally created visuals wherever practical, minimizing unnecessary third-party dependencies.
+
+---
+
+## 🎮 Getting Started
+
+### Prerequisites
+
+* [Godot Engine 4.x](https://godotengine.org/download/)
+* [Git](https://git-scm.com/downloads), if cloning the repository
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/arnavsakure21/quadra-trust-no-one.git
+```
+
+Enter the project directory:
+
+```bash
+cd quadra-trust-no-one
+```
+
+### Open the Game
+
+1. Launch Godot 4.x.
+2. Select **Import** or **Import Existing Project**.
+3. Navigate to the cloned repository.
+4. Select `project.godot`.
+5. Open the project and run it using the Play button.
+
+**Note:** The exact launch flow depends on the current implementation. Multiplayer hosting, joining, and all puzzle mechanics should be verified in the project before being considered fully playable.
+
+---
+
+## 📁 Project Structure
+
+```text
+quadra-trust-no-one/
+├── project.godot
+├── README.md
+├── scenes/
+│   └── main.tscn
+└── scripts/
+    ├── game.gd
+    └── player_actor.gd
+```
+
+The project may evolve as additional scenes, scripts, multiplayer components, and game systems are added.
+
+---
+
+## 🗺️ Development Roadmap
+
+* [ ] Core player movement and laboratory exploration
+* [ ] Four distinct playable character roles
+* [ ] Generator restoration puzzle
+* [ ] Security panel and door puzzle
+* [ ] Hidden clue and code puzzle
+* [ ] Environmental hazards and protective abilities
+* [ ] Match timer and objective tracking
+* [ ] Victory, defeat, and restart flow
+* [ ] Four-player host-and-join multiplayer
+* [ ] Network synchronization and disconnect handling
+* [ ] Gameplay testing and polish
+
+*Checklist items should be updated as features are implemented and tested.*
+
+---
+
+## 👥 Teamwork Is the Mechanic
+
+QUADRA explores how role-based cooperation can turn puzzle-solving into a shared challenge. Each player has a different responsibility, but the mission only succeeds when those responsibilities come together.
+
+The goal is simple: make communication essential, teamwork rewarding, and every escape memorable.
+
+---
+
+## 📜 License
+
+No license has been specified yet. Please contact the project maintainers before redistributing or reusing the code.
